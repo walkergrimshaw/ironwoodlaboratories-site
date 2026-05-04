@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Ironwood Labs — Instruments and software by Walker Grimshaw</title>
+  <meta name="description" content="Ironwood Labs is the instrument and software studio of Canadian composer Walker Grimshaw. Almanac, Strombus, and Family Tree modules.">
+  <meta name="author" content="Walker Grimshaw">
+  <link rel="canonical" href="https://ironwood-laboratories.com/">
+
+  <meta property="og:title" content="Ironwood Labs">
+  <meta property="og:description" content="Instruments and software by composer Walker Grimshaw. Almanac, Strombus, Family Tree.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ironwood-laboratories.com/">
+  <meta property="og:site_name" content="Ironwood Labs">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ironwood Labs">
+  <meta name="twitter:description" content="Instruments and software by composer Walker Grimshaw.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Ironwood Labs",
+    "alternateName": "Ironwood Laboratories",
+    "url": "https://ironwood-laboratories.com/",
+    "description": "Instrument and software studio of composer Walker Grimshaw.",
+    "founder": {
+      "@type": "Person",
+      "name": "Walker Grimshaw",
+      "url": "https://walkergrimshaw.com/"
+    },
+    "makesOffer": [
+      { "@type": "Offer", "name": "Almanac", "category": "Software" },
+      { "@type": "Offer", "name": "Strombus", "category": "Software" },
+      { "@type": "Offer", "name": "Family Tree", "category": "Hardware" }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0b;
+      --bg-2: #111114;
+      --rule: #1d1d21;
+      --ink: #c8c4ba;
+      --ink-glow: #ece7d8;
+      --ink-dim: #6a655c;
+      --accent: #c8a96a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'JetBrains Mono', 'IBM Plex Mono', 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 100vh;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.014) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px);
+      background-size: 36px 36px;
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* horizontal scroll progress bar */
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(200, 169, 106, 0.7), 0 0 2px rgba(200, 169, 106, 0.9);
+      z-index: 100;
+      transition: width 0.06s linear;
+    }
+
+    /* fixed corners */
+    .nav {
+      position: fixed;
+      top: 18px;
+      left: 24px;
+      right: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 90;
+      font-size: 10.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      pointer-events: none;
+    }
+    .nav .signal::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-right: 8px;
+      vertical-align: 1px;
+      box-shadow: 0 0 6px var(--accent);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .container { max-width: 920px; margin: 0 auto; padding: 0 28px; }
+
+    /* hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 140px 0 80px;
+      position: relative;
+    }
+
+    .hero-pre {
+      font-size: 10.5px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      margin-bottom: 28px;
+    }
+    .hero-pre .accent { color: var(--accent); }
+
+    .wordmark {
+      font-family: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+      font-size: clamp(54px, 11vw, 124px);
+      font-weight: 400;
+      letter-spacing: -0.012em;
+      color: var(--ink-glow);
+      line-height: 0.95;
+    }
+    .wordmark .light { color: var(--ink); font-style: italic; }
+
+    .hero-sub {
+      margin-top: 36px;
+      max-width: 520px;
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.75;
+    }
+
+    .hero-meta {
+      margin-top: 48px;
+      font-size: 10.5px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      align-items: center;
+    }
+    .hero-meta .dot { color: var(--accent); }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      animation: drift 2.8s ease-in-out infinite;
+    }
+    @keyframes drift {
+      0%, 100% { transform: translate(-50%, 0); opacity: 0.5; }
+      50% { transform: translate(-50%, 6px); opacity: 1; }
+    }
+
+    /* modules */
+    .modules { padding: 80px 0 140px; }
+
+    .section-label {
+      font-size: 10.5px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      margin-bottom: 60px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+    }
+    .section-label .count { color: var(--accent); }
+
+    .module {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+      padding: 64px 0;
+      border-bottom: 1px solid var(--rule);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+    .module.visible { opacity: 1; transform: translateY(0); }
+    .module:last-child { border-bottom: none; }
+
+    .module-image {
+      aspect-ratio: 4 / 3;
+      background: var(--bg-2);
+      border: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-dim);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+    }
+    .module-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+      background-size: 18px 18px;
+      pointer-events: none;
+    }
+    .module-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      position: relative;
+      z-index: 1;
+      padding: 14px;
+    }
+    .module-image.photo img {
+      object-fit: cover;
+      padding: 0;
+    }
+    .module-image .corner {
+      position: absolute;
+      top: 8px;
+      left: 10px;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: var(--ink-dim);
+      z-index: 2;
+    }
+
+    .module-body { min-width: 0; }
+
+    .module-meta {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      margin-bottom: 14px;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+    .module-meta .num { color: var(--accent); }
+    .module-meta .sep { color: var(--rule); }
+
+    .module-name {
+      font-family: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+      font-size: clamp(40px, 5.4vw, 56px);
+      font-weight: 400;
+      color: var(--ink-glow);
+      line-height: 1.05;
+      margin-bottom: 14px;
+      letter-spacing: -0.01em;
+    }
+
+    .module-tag {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 22px;
+    }
+
+    .module-desc {
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.75;
+      max-width: 38ch;
+    }
+
+    /* footer */
+    .footer {
+      border-top: 1px solid var(--rule);
+      padding: 64px 0 48px;
+      text-align: center;
+    }
+    .footer-attr {
+      font-size: 13px;
+      color: var(--ink);
+      max-width: 560px;
+      margin: 0 auto 20px;
+      line-height: 1.75;
+    }
+    .footer-attr a {
+      color: var(--ink-glow);
+      border-bottom: 1px dotted var(--ink-dim);
+      text-decoration: none;
+    }
+    .footer-attr a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+    .footer-meta {
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      opacity: 0.7;
+    }
+    .footer-meta .dot { color: var(--accent); margin: 0 10px; }
+
+    @media (max-width: 720px) {
+      .module {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 48px 0;
+      }
+      .nav { font-size: 9.5px; left: 18px; right: 18px; }
+      .container { padding: 0 22px; }
+      .hero { padding: 120px 0 80px; }
+      .hero-meta { font-size: 9.5px; gap: 12px; }
+    }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="progress" id="progress"></div>
+
+  <nav class="nav">
+    <span>Ironwood Labs</span>
+    <span class="signal">Signal</span>
+  </nav>
+
+  <h1 class="sr-only">Ironwood Labs by Walker Grimshaw. Instruments, software, and modules including Almanac, Strombus, and Family Tree.</h1>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-pre">
+        <span class="accent">/</span>&nbsp; Est. 2025 &nbsp;<span class="accent">/</span>&nbsp; Central Ontario
+      </div>
+
+      <div class="wordmark">
+        Ironwood<br>
+        <span class="light">Labs.</span>
+      </div>
+
+      <p class="hero-sub">
+        Software, modular hardware, and small studies in sound. Built quietly and shipped when ready.
+      </p>
+
+      <div class="hero-meta">
+        <span>Software</span>
+        <span class="dot">+</span>
+        <span>Modular</span>
+        <span class="dot">+</span>
+        <span>Instruments</span>
+      </div>
+    </div>
+
+    <div class="scroll-cue">Scroll&nbsp;&nbsp;↓</div>
+  </section>
+
+  <section class="modules">
+    <div class="container">
+
+      <div class="section-label">
+        <span>// Catalog</span>
+        <span><span class="count">003</span> Modules</span>
+      </div>
+
+      <article class="module" data-reveal>
+        <div class="module-image">
+          <span class="corner">FIG. 001</span>
+          <img src="almanac.png" alt="Almanac, an API to MIDI utility by Ironwood Labs">
+        </div>
+        <div class="module-body">
+          <div class="module-meta">
+            <span class="num">001</span>
+            <span class="sep">|</span>
+            <span>Software</span>
+          </div>
+          <h2 class="module-name">Almanac</h2>
+          <div class="module-tag">Data → MIDI</div>
+          <p class="module-desc">A utility that routes live data streams into MIDI for composition and performance.</p>
+        </div>
+      </article>
+
+      <article class="module" data-reveal>
+        <div class="module-image">
+          <span class="corner">FIG. 002</span>
+          <img src="strombus.png" alt="Strombus, a dual harmonic oscillator synthesizer by Ironwood Labs">
+        </div>
+        <div class="module-body">
+          <div class="module-meta">
+            <span class="num">002</span>
+            <span class="sep">|</span>
+            <span>Software</span>
+          </div>
+          <h2 class="module-name">Strombus</h2>
+          <div class="module-tag">Dual harmonic oscillator</div>
+          <p class="module-desc">A synthesizer built around two harmonic oscillators and slow chaotic modulation. Standalone and plugin.</p>
+        </div>
+      </article>
+
+      <article class="module" data-reveal>
+        <div class="module-image photo">
+          <span class="corner">FIG. 003</span>
+          <img src="family-tree.jpg" alt="Family Tree, a family of Eurorack hardware modules by Ironwood Labs">
+        </div>
+        <div class="module-body">
+          <div class="module-meta">
+            <span class="num">003</span>
+            <span class="sep">|</span>
+            <span>Hardware</span>
+          </div>
+          <h2 class="module-name">Family Tree</h2>
+          <div class="module-tag">Eurorack hardware</div>
+          <p class="module-desc">A small family of Eurorack modules, designed and assembled with Steve.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-attr">
+        Ironwood Labs is the instrument and software studio of Canadian composer <a href="https://walkergrimshaw.com">Walker Grimshaw</a>.
+      </p>
+      <p class="footer-meta">
+        © 2026 Ironwood Laboratories <span class="dot">+</span> ironwood-laboratories.com
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // horizontal scroll progress bar
+    const progress = document.getElementById('progress');
+    function updateProgress() {
+      const h = document.documentElement;
+      const top = h.scrollTop || document.body.scrollTop;
+      const max = h.scrollHeight - h.clientHeight;
+      const pct = max > 0 ? (top / max) * 100 : 0;
+      progress.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
+
+    // reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
