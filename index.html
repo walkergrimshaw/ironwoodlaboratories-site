@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Ironwood Labs | Instruments and software by Walker Grimshaw</title>
-  <meta name="description" content="Ironwood Labs is the instrument and software studio of Canadian composer Walker Grimshaw. Almanac, Strombus, and Family Tree modules.">
+  <meta name="description" content="Ironwood Labs is the instrument and software studio of Canadian composer Walker Grimshaw. Almanac, Strombus, Duplex, Syrinx, Fragment, and Family Tree modules.">
   <meta name="author" content="Walker Grimshaw">
   <link rel="canonical" href="https://ironwoodlabs.ca/">
 
   <meta property="og:title" content="Ironwood Labs">
-  <meta property="og:description" content="Instruments and software by composer Walker Grimshaw. Almanac, Strombus, Family Tree.">
+  <meta property="og:description" content="Instruments and software by composer Walker Grimshaw. Almanac, Strombus, Duplex, Syrinx, Fragment, Family Tree.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ironwoodlabs.ca/">
   <meta property="og:site_name" content="Ironwood Labs">
@@ -35,6 +35,9 @@
     "makesOffer": [
       { "@type": "Offer", "name": "Almanac", "category": "Software" },
       { "@type": "Offer", "name": "Strombus", "category": "Software" },
+      { "@type": "Offer", "name": "Duplex", "category": "Software" },
+      { "@type": "Offer", "name": "Syrinx", "category": "Software" },
+      { "@type": "Offer", "name": "Fragment", "category": "Software" },
       { "@type": "Offer", "name": "Family Tree", "category": "Hardware" }
     ]
   }
@@ -94,17 +97,6 @@
       border-bottom: 1px solid var(--line);
       pointer-events: none;
     }
-    .nav .signal::before {
-      content: '';
-      display: inline-block;
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--amber);
-      margin-right: 8px;
-      vertical-align: 1px;
-      animation: pulse 2.4s ease-in-out infinite;
-    }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
     .container { max-width: 920px; margin: 0 auto; padding: 0 28px; }
 
@@ -259,10 +251,9 @@
 
   <nav class="nav">
     <span>Ironwood Labs</span>
-    <span class="signal">Signal</span>
   </nav>
 
-  <h1 class="sr-only">Ironwood Labs by Walker Grimshaw. Instruments, software, and modules including Almanac, Strombus, and Family Tree.</h1>
+  <h1 class="sr-only">Ironwood Labs by Walker Grimshaw. Instruments, software, and modules including Almanac, Strombus, Duplex, Syrinx, Fragment, and Family Tree.</h1>
 
   <section class="hero">
     <div class="container">
@@ -293,7 +284,7 @@
 
       <div class="section-label">
         <span>Catalog</span>
-        <span><span class="count">003</span> Modules</span>
+        <span><span class="count">006</span> Modules</span>
       </div>
 
       <article class="module" data-reveal>
@@ -329,12 +320,60 @@
       </article>
 
       <article class="module" data-reveal>
+        <div class="module-image window-flat">
+          <img src="duplex.png" alt="Duplex, a sympathetic string resonator plugin by Ironwood Labs">
+        </div>
+        <div class="module-body">
+          <div class="module-meta">
+            <span class="num">003</span>
+            <span class="sep">|</span>
+            <span>Software</span>
+          </div>
+          <h2 class="module-name">Duplex</h2>
+          <div class="module-tag">Sympathetic string resonator</div>
+          <p class="module-desc">88 undamped piano strings that ring in response to whatever you feed them. AU, VST3 and Standalone.</p>
+        </div>
+      </article>
+
+      <article class="module" data-reveal>
+        <div class="module-image window-flat">
+          <img src="syrinx.png" alt="Syrinx, a breath-played tonal synthesizer by Ironwood Labs">
+        </div>
+        <div class="module-body">
+          <div class="module-meta">
+            <span class="num">004</span>
+            <span class="sep">|</span>
+            <span>Software</span>
+          </div>
+          <h2 class="module-name">Syrinx</h2>
+          <div class="module-tag">Breath-played tonal synth</div>
+          <p class="module-desc">A synthesizer played with breath, built so that no two notes come out the same.</p>
+        </div>
+      </article>
+
+      <article class="module" data-reveal>
+        <div class="module-image">
+          <img src="fragment.png" alt="Fragment, a session slicer and sample library by Ironwood Labs">
+        </div>
+        <div class="module-body">
+          <div class="module-meta">
+            <span class="num">005</span>
+            <span class="sep">|</span>
+            <span>Software</span>
+          </div>
+          <h2 class="module-name">Fragment</h2>
+          <div class="module-tag">Session slicer and sample library</div>
+          <p class="module-desc">Cuts long improvised recordings into individual gestures, trained on how a composer actually splices, then lets you browse the results as a library.</p>
+        </div>
+      </article>
+
+      <article class="module" data-reveal>
         <div class="module-image photo">
           <img src="family-tree.jpg" alt="Family Tree, a family of Eurorack hardware modules by Ironwood Labs">
         </div>
         <div class="module-body">
           <div class="module-meta">
-            <span class="num">003</span>
+            <span class="num">006</span>
             <span class="sep">|</span>
             <span>Hardware</span>
           </div>
